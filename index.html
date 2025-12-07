@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
     <!-- Баннер для cookies (будет скрыт по умолчанию) -->
     <div id="cookie-banner" class="cookie-banner">
@@ -64,7 +65,8 @@
                 <h2 class="section-title">Недавно просмотренные</h2>
                 <div class="viewed-books" id="viewedBooks">
                     <!-- Сюда JS добавит книги из localStorage -->
-                    <p class="empty-message" id="emptyViewedMessage">Вы еще не смотрели книги. Перейдите в <a href="catalog.html">каталог</a> чтобы начать.</p>
+                    <p class="empty-message" id="emptyViewedMessage">Вы еще не смотрели книги. Перейдите в <a
+                            href="catalog.html">каталог</a> чтобы начать.</p>
                 </div>
             </div>
         </section>
@@ -115,14 +117,17 @@
                 <h2 class="section-title">О нашем магазине</h2>
                 <div class="about-content">
                     <div class="about-text">
-                        <p>Мы - небольшой независимый книжный магазин, который существует уже более 10 лет. Наша миссия - делиться любовью к чтению и помогать каждому найти свою идеальную книгу.</p>
-                        <p>В нашем ассортименте вы найдете как классические произведения, так и современные бестселлеры, редкие издания и книги молодых авторов.</p>
+                        <p>Мы - небольшой независимый книжный магазин, который существует уже более 10 лет. Наша миссия
+                            - делиться любовью к чтению и помогать каждому найти свою идеальную книгу.</p>
+                        <p>В нашем ассортименте вы найдете как классические произведения, так и современные бестселлеры,
+                            редкие издания и книги молодых авторов.</p>
                         <p>Приходите к нам за новыми впечатлениями и вдохновением!</p>
                     </div>
                     <div class="about-image">
-                        <!-- Декоративное изображение -->
-                        <div class="image-placeholder">
-                            <i class="fas fa-book-reader"></i>
+                        <!-- Вместо заглушки используем реальную картинку -->
+                        <div class="image-placeholder" style="background-image: url('images/pic.jpg');">
+                            <!-- Можно оставить иконку как запасной вариант -->
+                            <i class="fas fa-book-reader" style="color: white; font-size: 60px; opacity: 0.8;"></i>
                         </div>
                     </div>
                 </div>
@@ -175,4 +180,5 @@
     <script src="data.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>

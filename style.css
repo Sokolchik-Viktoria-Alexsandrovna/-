@@ -1,3 +1,4 @@
+
 /* Сброс стилей и базовые настройки */
 * {
     margin: 0;
@@ -257,6 +258,8 @@ a {
     font-size: 20px;
     text-align: center;
     padding: 20px;
+    background-size: cover;
+    background-position: center;
 }
 
 /* Стили для информации о книге */
@@ -304,7 +307,7 @@ a {
     flex: 1;
 }
 
-/* Заглушка для изображения */
+/* Заглушка для изображения - ИСПРАВЛЕНО: сделана ШИРОКОЙ */
 .image-placeholder {
     height: 300px;
     background-color: #3498db;
@@ -314,6 +317,9 @@ a {
     justify-content: center;
     color: white;
     font-size: 80px;
+    background-size: cover;
+    background-position: center;
+    width: 100%; /* Важно: растягиваем на всю доступную ширину */
 }
 
 /* Стили для подвала */
@@ -530,6 +536,19 @@ a {
         flex-direction: column;
     }
     
+    /* СДЕЛАЛА ШИРЕ: image-placeholder на мобильных - ОЧЕНЬ ШИРОКИЙ */
+    .image-placeholder {
+        height: 250px;
+        width: 100% !important; /* Важно: принудительно растягиваем */
+        max-width: 100% !important; /* Убираем любые ограничения по ширине */
+        margin: 0 auto;
+    }
+    
+    /* Также делаем шире контейнер about-image */
+    .about-image {
+        width: 100%;
+    }
+    
     /* Показываем кнопку меню на мобильных */
     .menu-toggle {
         display: block;
@@ -617,5 +636,12 @@ a {
     .category-card {
         width: 100%;
         max-width: 280px;
+    }
+    
+    /* ЕЩЕ ШИРЕ: image-placeholder на очень маленьких экранах */
+    .image-placeholder {
+        height: 200px;
+        width: 100% !important;
+        max-width: 100% !important;
     }
 }

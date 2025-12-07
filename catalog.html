@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Книжный уголок - Каталог</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Дополнительные стили для страницы каталога */
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 10px 20px;
+            background-color: #ecf0f1;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn.active {
+            background-color: #e74c3c;
+            color: white;
+        }
+        
+        .filter-btn:hover {
+            background-color: #bdc3c7;
+        }
+        
+        .filter-btn.active:hover {
+            background-color: #c0392b;
+        }
+        
+        .catalog-info {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <!-- Баннер для cookies -->
+    <div id="cookie-banner" class="cookie-banner">
+        <p>Мы используем cookies для улучшения работы сайта. Оставаясь на сайте, вы соглашаетесь с этим.</p>
+        <button id="cookie-accept" class="btn">Принять</button>
+    </div>
+
+    <!-- Шапка сайта -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Логотип -->
+                <div class="logo">
+                    <a href="index.html">
+                        <i class="fas fa-book-open"></i>
+                        <span>Книжный уголок</span>
+                    </a>
+                </div>
+
+                <!-- Навигация -->
+                <nav class="nav">
+                    <button class="menu-toggle" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <ul class="nav-list" id="navList">
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="catalog.html" class="active">Каталог</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Приветствие пользователя -->
+                <div class="user-greeting" id="userGreeting">
+                    <!-- Сюда JS вставит "Привет, Имя!" -->
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Основное содержимое -->
+    <main class="main">
+        <!-- Заголовок каталога -->
+        <section class="hero" style="padding: 70px 0; background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.9));">
+            <div class="container">
+                <h1 class="hero-title">Каталог книг</h1>
+                <p class="hero-subtitle">Все книги нашего магазина в одном месте</p>
+            </div>
+        </section>
+
+        <!-- Фильтры и каталог -->
+        <section class="section catalog-section">
+            <div class="container">
+                <!-- Фильтры по жанру -->
+                <div class="filters">
+                    <button class="filter-btn active" data-filter="all">Все книги</button>
+                    <button class="filter-btn" data-filter="Художественная литература">Художественная</button>
+                    <button class="filter-btn" data-filter="Фэнтези">Фэнтези</button>
+                    <button class="filter-btn" data-filter="Детектив">Детективы</button>
+                </div>
+                
+                <!-- Информация о количестве книг -->
+                <div class="catalog-info">
+                    <p id="catalogCount">Всего книг: 12</p>
+                </div>
+                
+                <!-- Сетка книг -->
+                <div class="books-grid" id="catalogBooks">
+                    <!-- Сюда JS добавит все книги -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Подвал -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Книжный уголок</h3>
+                    <p>Магазин хороших книг с 2013 года</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> г. Москва, ул. Книжная, 15</p>
+                    <p><i class="fas fa-phone"></i> +7 (495) 123-45-67</p>
+                    <p><i class="fas fa-envelope"></i> info@bookcorner.ru</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Мы в соцсетях</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-vk"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Книжный уголок. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Модальное окно для ввода имени -->
+    <div id="nameModal" class="modal">
+        <div class="modal-content">
+            <h2>Добро пожаловать!</h2>
+            <p>Как к вам обращаться?</p>
+            <input type="text" id="userNameInput" placeholder="Введите ваше имя" maxlength="20">
+            <div class="modal-buttons">
+                <button id="saveName" class="btn">Сохранить</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Подключаем скрипты -->
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Дополнительный скрипт для страницы каталога
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Страница каталога загружена');
+            
+            // Загружаю книги в каталог
+            loadCatalogBooks();
+            
+            // Настраиваю фильтры
+            setupFilters();
+            
+            // Проверяю, нужно ли открыть конкретную книгу (из истории просмотров)
+            checkBookToOpen();
+        });
+        
+        // Функция для загрузки книг в каталог
+        function loadCatalogBooks() {
+            const catalogBooks = document.getElementById('catalogBooks');
+            const catalogCount = document.getElementById('catalogCount');
+            
+            if (catalogBooks) {
+                // Очищаю контейнер
+                catalogBooks.innerHTML = '';
+                
+                // Добавляю все книги в каталог
+                books.forEach(book => {
+                    const bookElement = createBookCard(book, false);
+                    catalogBooks.appendChild(bookElement);
+                });
+                
+                // Обновляю счетчик книг
+                if (catalogCount) {
+                    catalogCount.textContent = `Всего книг: ${books.length}`;
+                }
+            }
+        }
+        
+        // Функция для настройки фильтров
+        function setupFilters() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const catalogBooks = document.getElementById('catalogBooks');
+            const catalogCount = document.getElementById('catalogCount');
+            
+            if (!filterButtons.length || !catalogBooks) return;
+            
+            // Добавляю обработчик клика на каждую кнопку фильтра
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const filter = this.getAttribute('data-filter');
+                    console.log('Применен фильтр:', filter);
+                    
+                    // Убираю класс active у всех кнопок
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Добавляю класс active к текущей кнопке
+                    this.classList.add('active');
+                    
+                    // Фильтрую книги
+                    let filteredBooks;
+                    if (filter === 'all') {
+                        filteredBooks = books;
+                    } else {
+                        filteredBooks = books.filter(book => 
+                            book.genre.some(genre => genre === filter)
+                        );
+                    }
+                    
+                    // Показываю отфильтрованные книги
+                    catalogBooks.innerHTML = '';
+                    filteredBooks.forEach(book => {
+                        const bookElement = createBookCard(book, false);
+                        catalogBooks.appendChild(bookElement);
+                    });
+                    
+                    // Обновляю счетчик книг
+                    if (catalogCount) {
+                        catalogCount.textContent = `Найдено книг: ${filteredBooks.length}`;
+                    }
+                    
+                    // Добавляю анимацию появления отфильтрованных книг
+                    setTimeout(() => {
+                        const bookCards = catalogBooks.querySelectorAll('.book-card');
+                        bookCards.forEach((card, index) => {
+                            card.style.transitionDelay = `${index * 0.1}s`;
+                            card.classList.add('animate');
+                        });
+                    }, 50);
+                });
+            });
+        }
+        
+        // Функция для проверки, нужно ли открыть конкретную книгу
+        function checkBookToOpen() {
+            const bookId = localStorage.getItem('bookToOpen');
+            
+            if (bookId) {
+                console.log('Открываю книгу из истории:', bookId);
+                
+                // Небольшая задержка, чтобы все элементы успели загрузиться
+                setTimeout(() => {
+                    // Нахожу кнопку "Подробнее" для этой книги и кликаю по ней
+                    const button = document.querySelector(`button[data-book-id="${bookId}"]`);
+                    if (button) {
+                        button.click();
+                    }
+                    
+                    // Удаляю информацию о книге для открытия
+                    localStorage.removeItem('bookToOpen');
+                }, 500);
+            }
+        }
+    </script>
+</body>
+</html>

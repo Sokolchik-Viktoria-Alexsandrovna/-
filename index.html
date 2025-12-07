@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Книжный уголок - Главная</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Баннер для cookies (будет скрыт по умолчанию) -->
+    <div id="cookie-banner" class="cookie-banner">
+        <p>Мы используем cookies для улучшения работы сайта. Оставаясь на сайте, вы соглашаетесь с этим.</p>
+        <button id="cookie-accept" class="btn">Принять</button>
+    </div>
+
+    <!-- Шапка сайта -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Логотип -->
+                <div class="logo">
+                    <a href="index.html">
+                        <i class="fas fa-book-open"></i>
+                        <span>Книжный уголок</span>
+                    </a>
+                </div>
+
+                <!-- Навигация -->
+                <nav class="nav">
+                    <button class="menu-toggle" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <ul class="nav-list" id="navList">
+                        <li><a href="index.html" class="active">Главная</a></li>
+                        <li><a href="catalog.html">Каталог</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Приветствие пользователя (будет заполнено через JS) -->
+                <div class="user-greeting" id="userGreeting">
+                    <!-- Сюда JS вставит "Привет, Имя!" -->
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Основное содержимое -->
+    <main class="main">
+        <!-- Герой-секция -->
+        <section class="hero">
+            <div class="container">
+                <h1 class="hero-title">Добро пожаловать в мир книг</h1>
+                <p class="hero-subtitle">Откройте для себя новые истории и забытые классики</p>
+                <a href="catalog.html" class="btn btn-large">Смотреть каталог</a>
+            </div>
+        </section>
+
+        <!-- Блок "Недавно просмотренные" (будет заполнен через JS) -->
+        <section class="section viewed-books-section">
+            <div class="container">
+                <h2 class="section-title">Недавно просмотренные</h2>
+                <div class="viewed-books" id="viewedBooks">
+                    <!-- Сюда JS добавит книги из localStorage -->
+                    <p class="empty-message" id="emptyViewedMessage">Вы еще не смотрели книги. Перейдите в <a href="catalog.html">каталог</a> чтобы начать.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Популярные категории -->
+        <section class="section categories-section">
+            <div class="container">
+                <h2 class="section-title">Популярные категории</h2>
+                <div class="categories">
+                    <div class="category-card">
+                        <div class="category-icon">
+                            <i class="fas fa-pen-nib"></i>
+                        </div>
+                        <h3>Художественная литература</h3>
+                        <p>Классика и современная проза</p>
+                    </div>
+                    <div class="category-card">
+                        <div class="category-icon">
+                            <i class="fas fa-dragon"></i>
+                        </div>
+                        <h3>Фэнтези</h3>
+                        <p>Миры магии и приключений</p>
+                    </div>
+                    <div class="category-card">
+                        <div class="category-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h3>Детективы</h3>
+                        <p>Захватывающие расследования</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Новинки месяца -->
+        <section class="section new-books-section">
+            <div class="container">
+                <h2 class="section-title">Новинки месяца</h2>
+                <div class="books-grid" id="newBooks">
+                    <!-- Сюда JS добавит 4 случайные книги -->
+                </div>
+            </div>
+        </section>
+
+        <!-- О нас -->
+        <section class="section about-section">
+            <div class="container">
+                <h2 class="section-title">О нашем магазине</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>Мы - небольшой независимый книжный магазин, который существует уже более 10 лет. Наша миссия - делиться любовью к чтению и помогать каждому найти свою идеальную книгу.</p>
+                        <p>В нашем ассортименте вы найдете как классические произведения, так и современные бестселлеры, редкие издания и книги молодых авторов.</p>
+                        <p>Приходите к нам за новыми впечатлениями и вдохновением!</p>
+                    </div>
+                    <div class="about-image">
+                        <!-- Декоративное изображение -->
+                        <div class="image-placeholder">
+                            <i class="fas fa-book-reader"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Подвал -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Книжный уголок</h3>
+                    <p>Магазин хороших книг с 2013 года</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> г. Минск, ул. Книжная, 15</p>
+                    <p><i class="fas fa-phone"></i> +375 (29) 123-45-67</p>
+                    <p><i class="fas fa-envelope"></i> info@bookcorner.by</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Мы в соцсетях</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-vk"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Книжный уголок. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Модальное окно для ввода имени -->
+    <div id="nameModal" class="modal">
+        <div class="modal-content">
+            <h2>Добро пожаловать!</h2>
+            <p>Как к вам обращаться?</p>
+            <input type="text" id="userNameInput" placeholder="Введите ваше имя" maxlength="20">
+            <div class="modal-buttons">
+                <button id="saveName" class="btn">Сохранить</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Подключаем скрипты -->
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

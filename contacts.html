@@ -1,0 +1,1058 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Книжный уголок - Контакты</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Дополнительные стили для страницы контактов */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        @media (max-width: 768px) {
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .contact-info h3 {
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .contact-icon {
+            background-color: #e74c3c;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .contact-text h4 {
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+
+        /* Стили для карты */
+        .map-container {
+            background-color: #ecf0f1;
+            border-radius: 8px;
+            overflow: hidden;
+            height: 300px;
+            position: relative;
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .map-placeholder i {
+            font-size: 60px;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+
+        .map-marker {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -100%);
+            color: #e74c3c;
+            font-size: 40px;
+            cursor: pointer;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translate(-50%, -100%);
+            }
+
+            50% {
+                transform: translate(-50%, -110%);
+            }
+        }
+
+        /* Стили для формы */
+        .contact-form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+
+        .form-control.error {
+            border-color: #e74c3c;
+        }
+
+        .form-control.error:focus {
+            border-color: #e74c3c;
+            box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.2);
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        /* Стили для FAQ */
+        .faq-section {
+            margin-top: 60px;
+        }
+
+        .faq-item {
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 15px 20px;
+            background-color: #f8f9fa;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+
+        .faq-question:hover {
+            background-color: #ecf0f1;
+        }
+
+        .faq-question h4 {
+            margin: 0;
+            color: #2c3e50;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s;
+        }
+
+        .faq-answer {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s, padding 0.3s;
+        }
+
+        .faq-answer p {
+            margin: 0;
+            padding: 20px;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Дополнительные стили для валидации формы */
+        .field-status,
+        .field-success {
+            position: absolute;
+            right: 12px;
+            top: 38px;
+            font-size: 18px;
+        }
+
+        .field-status {
+            color: #e74c3c;
+        }
+
+        .field-success {
+            color: #2ecc71;
+        }
+
+        /* Анимация тряски для кнопки при ошибке */
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            10%,
+            30%,
+            50%,
+            70%,
+            90% {
+                transform: translateX(-5px);
+            }
+
+            20%,
+            40%,
+            60%,
+            80% {
+                transform: translateX(5px);
+            }
+        }
+
+        .shake {
+            animation: shake 0.5s;
+        }
+
+        /* Стили для подсветки обязательных полей */
+        .form-group.required label::after {
+            content: " *";
+            color: #e74c3c;
+        }
+
+        /* Счетчик символов для текстового поля */
+        .char-counter {
+            font-size: 12px;
+            color: #7f8c8d;
+            text-align: right;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .char-counter.warning {
+            color: #f39c12;
+        }
+
+        .char-counter.error {
+            color: #e74c3c;
+        }
+
+        /* Прогресс заполнения формы */
+        .form-progress {
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            height: 5px;
+            background-color: #ecf0f1;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: #2ecc71;
+            width: 0%;
+            transition: width 0.3s;
+        }
+
+        .progress-text {
+            font-size: 14px;
+            color: #7f8c8d;
+            text-align: right;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Баннер для cookies -->
+    <div id="cookie-banner" class="cookie-banner">
+        <p>Мы используем cookies для улучшения работы сайта. Оставаясь на сайте, вы соглашаетесь с этим.</p>
+        <button id="cookie-accept" class="btn">Принять</button>
+    </div>
+
+    <!-- Шапка сайта -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Логотип -->
+                <div class="logo">
+                    <a href="index.html">
+                        <i class="fas fa-book-open"></i>
+                        <span>Книжный уголок</span>
+                    </a>
+                </div>
+
+                <!-- Навигация -->
+                <nav class="nav">
+                    <button class="menu-toggle" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <ul class="nav-list" id="navList">
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="catalog.html">Каталог</a></li>
+                        <li><a href="contacts.html" class="active">Контакты</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Приветствие пользователя -->
+                <div class="user-greeting" id="userGreeting">
+                    <!-- Сюда JS вставит "Привет, Имя!" -->
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Основное содержимое -->
+    <main class="main">
+        <!-- Заголовок контактов -->
+        <section class="hero"
+            style="padding: 70px 0; background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.9));">
+            <div class="container">
+                <h1 class="hero-title">Контакты</h1>
+                <p class="hero-subtitle">Свяжитесь с нами любым удобным способом</p>
+            </div>
+        </section>
+
+        <!-- Контактная информация и форма -->
+        <section class="section contact-section">
+            <div class="container">
+                <div class="contact-content">
+                    <!-- Контактная информация -->
+                    <div class="contact-info">
+                        <h3>Контактная информация</h3>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Адрес</h4>
+                                <p>г. Минск, ул. Книжная, дом 15</p>
+                                <p>Ближайшая станция метро: "Немига"</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Телефон</h4>
+                                <p>+375 (29) 123-45-67</p>
+                                <p>Ежедневно с 9:00 до 21:00</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Email</h4>
+                                <p>info@bookcorner.by</p>
+                                <p>Для заказов: order@bookcorner.by</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>График работы</h4>
+                                <p>Пн-Пт: 10:00 - 20:00</p>
+                                <p>Сб-Вс: 11:00 - 19:00</p>
+                            </div>
+                        </div>
+
+                        <!-- Карта -->
+                        <h3 style="margin-top: 40px;">Мы на карте</h3>
+                        <div class="map-container">
+                            <div class="map-placeholder">
+                                <i class="fas fa-map"></i>
+                                <p>Интерактивная карта нашего местоположения</p>
+                                <p>Нажмите на метку для информации</p>
+                            </div>
+                            <div class="map-marker" id="mapMarker">
+                                <i class="fas fa-map-pin"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Форма обратной связи -->
+                    <div class="contact-form-container">
+                        <h3>Форма обратной связи</h3>
+                        <p>Заполните форму ниже, и мы свяжемся с вами в ближайшее время</p>
+
+                        <!-- В файле contacts.html, в разделе формы, замените поля ввода на эти: -->
+                        <form id="contactForm" class="contact-form">
+                            <!-- Прогресс заполнения формы -->
+                            <div class="form-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="formProgress"></div>
+                                </div>
+                                <div class="progress-text" id="progressText">Заполнено: 0%</div>
+                            </div>
+
+                            <div class="form-group required">
+                                <label for="name">Ваше имя</label>
+                                <input type="text" id="name" class="form-control"
+                                    placeholder="Введите ваше имя (минимум 2 буквы)"
+                                    title="Имя должно содержать только буквы и быть не короче 2 символов">
+                                <div class="error-message" id="nameError"></div>
+                            </div>
+
+                            <div class="form-group required">
+                                <label for="email">Ваш email</label>
+                                <input type="email" id="email" class="form-control" placeholder="example@mail.by"
+                                    title="Введите корректный email адрес">
+                                <div class="error-message" id="emailError"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="subject">Тема сообщения</label>
+                                <input type="text" id="subject" class="form-control"
+                                    placeholder="Тема вашего сообщения (необязательно)">
+                            </div>
+
+                            <div class="form-group required">
+                                <label for="message">Сообщение</label>
+                                <textarea id="message" class="form-control" rows="5"
+                                    placeholder="Введите ваше сообщение (минимум 10 символов)"
+                                    title="Сообщение должно содержать не менее 10 символов"></textarea>
+                                <div class="char-counter" id="charCounter">0/10</div>
+                                <div class="error-message" id="messageError"></div>
+                            </div>
+
+                            <button type="submit" class="btn" id="submitForm">Отправить сообщение</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- FAQ -->
+                <div class="faq-section">
+                    <h3 class="section-title">Часто задаваемые вопросы</h3>
+
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h4>Как сделать заказ книги?</h4>
+                                <div class="faq-icon">
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Для заказа книги свяжитесь с нами по телефону, через форму обратной связи или придите
+                                    в наш магазин. Мы поможем подобрать книгу и оформить заказ.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h4>Можно ли забронировать книгу?</h4>
+                                <div class="faq-icon">
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Да, вы можете забронировать книгу по телефону. Мы будем хранить ее для вас в течение
+                                    3 дней. Для бронирования потребуется назвать ваше имя и контактный телефон.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h4>Есть ли доставка?</h4>
+                                <div class="faq-icon">
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Да, мы осуществляем доставку по Минску в пределах МКАД. Стоимость доставки - 5 рублей. При заказе от 50 рублей доставка бесплатная.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h4>Можно ли вернуть книгу?</h4>
+                                <div class="faq-icon">
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Да, в соответствии с законодательством, вы можете вернуть книгу в течение 7 дней
+                                    после покупки, если она не была в употреблении и сохранен товарный вид.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Подвал -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Книжный уголок</h3>
+                    <p>Магазин хороших книг с 2013 года</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> г. Минск, ул. Книжная, 15</p>
+                    <p><i class="fas fa-phone"></i> +375 (29) 123-45-67</p>
+                    <p><i class="fas fa-envelope"></i> info@bookcorner.by</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Мы в соцсетях</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-vk"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Книжный уголок. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Модальное окно для ввода имени -->
+    <div id="nameModal" class="modal">
+        <div class="modal-content">
+            <h2>Добро пожаловать!</h2>
+            <p>Как к вам обращаться?</p>
+            <input type="text" id="userNameInput" placeholder="Введите ваше имя" maxlength="20">
+            <div class="modal-buttons">
+                <button id="saveName" class="btn">Сохранить</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно успешной отправки формы -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <h2>Спасибо!</h2>
+            <p>Ваше сообщение успешно отправлено.</p>
+            <p>Мы свяжемся с вами в ближайшее время.</p>
+            <div class="modal-buttons">
+                <button id="closeSuccessModal" class="btn">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Подключаем скрипты -->
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Дополнительный скрипт для страницы контактов
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('Страница контактов загружена');
+
+            // Настраиваю интерактивную карту
+            setupMap();
+
+            // Настраиваю форму обратной связи
+            setupContactForm();
+
+            // Настраиваю FAQ (аккордеон)
+            setupFAQ();
+        });
+
+        // Функция для настройки интерактивной карты
+        function setupMap() {
+            const mapMarker = document.getElementById('mapMarker');
+            const mapPlaceholder = document.querySelector('.map-placeholder');
+
+            if (mapMarker) {
+                // Добавляю обработчик клика на метку карты
+                mapMarker.addEventListener('click', function () {
+                    // Показываю информацию о местоположении
+                    alert('Наш магазин находится по адресу: г. Минск, ул. Книжная, дом 15\n\nБлижайшая станция метро: "Немига"\n\nМы ждем вас с 10:00 до 20:00 ежедневно!');
+
+                    // Анимация метки при клике
+                    this.style.transform = 'translate(-50%, -100%) scale(1.2)';
+                    setTimeout(() => {
+                        this.style.transform = 'translate(-50%, -100%) scale(1)';
+                    }, 300);
+                });
+
+                // Делаю карту более интерактивной
+                if (mapPlaceholder) {
+                    mapPlaceholder.innerHTML = `
+                        <i class="fas fa-map-marked-alt"></i>
+                        <p>Наш магазин на карте Минска</p>
+                        <p style="font-size: 14px; margin-top: 10px;">Нажмите на метку для подробной информации</p>
+                    `;
+                }
+            }
+        }
+
+        // Функция для настройки формы обратной связи
+        function setupContactForm() {
+            const contactForm = document.getElementById('contactForm');
+            const submitBtn = document.getElementById('submitForm');
+            const successModal = document.getElementById('successModal');
+            const closeSuccessBtn = document.getElementById('closeSuccessModal');
+            
+            if (!contactForm || !submitBtn) return;
+            
+            // Получаю все поля формы
+            const nameInput = document.getElementById('name');
+            const emailInput = document.getElementById('email');
+            const subjectInput = document.getElementById('subject');
+            const messageInput = document.getElementById('message');
+            
+            // Сообщения об ошибках для каждого поля
+            const errorMessages = {
+                name: {
+                    empty: "Пожалуйста, введите ваше имя",
+                    short: "Имя должно содержать минимум 2 символа",
+                    invalid: "Имя содержит недопустимые символы"
+                },
+                email: {
+                    empty: "Пожалуйста, введите ваш email",
+                    invalid: "Введите корректный email (например, example@mail.by)"
+                },
+                message: {
+                    empty: "Пожалуйста, введите ваше сообщение",
+                    short: "Сообщение должно содержать минимум 10 символов"
+                }
+            };
+            
+            // Функция для проверки имени
+            function validateName(name) {
+                const nameValue = name.trim();
+                
+                if (!nameValue) {
+                    return { isValid: false, message: errorMessages.name.empty };
+                }
+                
+                if (nameValue.length < 2) {
+                    return { isValid: false, message: errorMessages.name.short };
+                }
+                
+                // Проверяю, что имя содержит только буквы, пробелы и дефисы
+                const nameRegex = /^[a-zA-Zа-яА-ЯёЁ\s\-]+$/;
+                if (!nameRegex.test(nameValue)) {
+                    return { isValid: false, message: errorMessages.name.invalid };
+                }
+                
+                return { isValid: true, message: "" };
+            }
+            
+            // Функция для проверки email
+            function validateEmail(email) {
+                const emailValue = email.trim();
+                
+                if (!emailValue) {
+                    return { isValid: false, message: errorMessages.email.empty };
+                }
+                
+                // Простая проверка формата email
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(emailValue)) {
+                    return { isValid: false, message: errorMessages.email.invalid };
+                }
+                
+                return { isValid: true, message: "" };
+            }
+            
+            // Функция для проверки сообщения
+            function validateMessage(message) {
+                const messageValue = message.trim();
+                
+                if (!messageValue) {
+                    return { isValid: false, message: errorMessages.message.empty };
+                }
+                
+                if (messageValue.length < 10) {
+                    return { isValid: false, message: errorMessages.message.short };
+                }
+                
+                return { isValid: true, message: "" };
+            }
+            
+            // Функция для отображения ошибки поля
+            function showError(field, errorElement, message) {
+                field.classList.add('error');
+                errorElement.textContent = message;
+                errorElement.style.display = 'block';
+                
+                // Добавляю иконку ошибки
+                if (!field.parentNode.querySelector('.field-status')) {
+                    const statusIcon = document.createElement('span');
+                    statusIcon.className = 'field-status';
+                    statusIcon.innerHTML = '<i class="fas fa-exclamation-circle"></i>';
+                    field.parentNode.appendChild(statusIcon);
+                }
+            }
+            
+            // Функция для скрытия ошибки поля
+            function hideError(field, errorElement) {
+                field.classList.remove('error');
+                errorElement.style.display = 'none';
+                
+                // Удаляю иконку ошибки
+                const statusIcon = field.parentNode.querySelector('.field-status');
+                if (statusIcon) {
+                    statusIcon.remove();
+                }
+                
+                // Добавляю иконку успеха если поле заполнено правильно
+                if (field.value.trim()) {
+                    if (!field.parentNode.querySelector('.field-success')) {
+                        const successIcon = document.createElement('span');
+                        successIcon.className = 'field-success';
+                        successIcon.innerHTML = '<i class="fas fa-check-circle"></i>';
+                        field.parentNode.appendChild(successIcon);
+                    }
+                }
+            }
+            
+            // Функция для валидации конкретного поля
+            function validateField(field, errorElement) {
+                let validationResult;
+                
+                switch (field.id) {
+                    case 'name':
+                        validationResult = validateName(field.value);
+                        break;
+                    case 'email':
+                        validationResult = validateEmail(field.value);
+                        break;
+                    case 'message':
+                        validationResult = validateMessage(field.value);
+                        break;
+                    default:
+                        return true;
+                }
+                
+                if (validationResult.isValid) {
+                    hideError(field, errorElement);
+                    return true;
+                } else {
+                    showError(field, errorElement, validationResult.message);
+                    return false;
+                }
+            }
+            
+            // Функция для обновления прогресса заполнения формы
+            function updateFormProgress() {
+                const progressFill = document.getElementById('formProgress');
+                const progressText = document.getElementById('progressText');
+                
+                if (!progressFill || !progressText) return;
+                
+                let filledFields = 0;
+                let totalFields = 3; // name, email, message - обязательные поля
+                
+                // Проверяю обязательные поля
+                if (nameInput && nameInput.value.trim()) {
+                    const nameValidation = validateName(nameInput.value);
+                    if (nameValidation.isValid) filledFields++;
+                }
+                
+                if (emailInput && emailInput.value.trim()) {
+                    const emailValidation = validateEmail(emailInput.value);
+                    if (emailValidation.isValid) filledFields++;
+                }
+                
+                if (messageInput && messageInput.value.trim()) {
+                    const messageValidation = validateMessage(messageInput.value);
+                    if (messageValidation.isValid) filledFields++;
+                }
+                
+                const progressPercent = Math.round((filledFields / totalFields) * 100);
+                progressFill.style.width = `${progressPercent}%`;
+                progressText.textContent = `Заполнено: ${progressPercent}%`;
+                
+                // Меняю цвет прогресс-бара в зависимости от заполнения
+                if (progressPercent < 33) {
+                    progressFill.style.backgroundColor = '#e74c3c';
+                } else if (progressPercent < 66) {
+                    progressFill.style.backgroundColor = '#f39c12';
+                } else {
+                    progressFill.style.backgroundColor = '#2ecc71';
+                }
+            }
+            
+            // Функция для обновления счетчика символов
+            function updateCharCounter() {
+                const charCounter = document.getElementById('charCounter');
+                if (!charCounter || !messageInput) return;
+                
+                const length = messageInput.value.length;
+                charCounter.textContent = `${length}/10`;
+                charCounter.style.display = 'block';
+                
+                if (length < 10) {
+                    charCounter.className = 'char-counter error';
+                } else if (length < 20) {
+                    charCounter.className = 'char-counter warning';
+                } else {
+                    charCounter.className = 'char-counter';
+                }
+            }
+            
+            // Добавляю обработчики для валидации в реальном времени
+            if (nameInput) {
+                const nameError = document.getElementById('nameError');
+                
+                nameInput.addEventListener('input', function() {
+                    validateField(this, nameError);
+                    updateFormProgress();
+                });
+                
+                nameInput.addEventListener('blur', function() {
+                    validateField(this, nameError);
+                });
+            }
+            
+            if (emailInput) {
+                const emailError = document.getElementById('emailError');
+                
+                emailInput.addEventListener('input', function() {
+                    validateField(this, emailError);
+                    updateFormProgress();
+                });
+                
+                emailInput.addEventListener('blur', function() {
+                    validateField(this, emailError);
+                });
+            }
+            
+            if (messageInput) {
+                const messageError = document.getElementById('messageError');
+                
+                messageInput.addEventListener('input', function() {
+                    validateField(this, messageError);
+                    updateFormProgress();
+                    updateCharCounter();
+                });
+                
+                messageInput.addEventListener('blur', function() {
+                    validateField(this, messageError);
+                });
+            }
+            
+            // Обработчик отправки формы
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                console.log('Пытаюсь отправить форму...');
+                
+                // Валидирую все поля
+                let isFormValid = true;
+                
+                if (nameInput) {
+                    const nameError = document.getElementById('nameError');
+                    const nameValid = validateField(nameInput, nameError);
+                    isFormValid = nameValid && isFormValid;
+                }
+                
+                if (emailInput) {
+                    const emailError = document.getElementById('emailError');
+                    const emailValid = validateField(emailInput, emailError);
+                    isFormValid = emailValid && isFormValid;
+                }
+                
+                if (messageInput) {
+                    const messageError = document.getElementById('messageError');
+                    const messageValid = validateField(messageInput, messageError);
+                    isFormValid = messageValid && isFormValid;
+                }
+                
+                // Если форма валидна
+                if (isFormValid) {
+                    // Сохраняю данные формы в localStorage
+                    const formData = {
+                        name: nameInput ? nameInput.value.trim() : '',
+                        email: emailInput ? emailInput.value.trim() : '',
+                        subject: subjectInput ? subjectInput.value.trim() : '',
+                        message: messageInput ? messageInput.value.trim() : '',
+                        timestamp: new Date().toISOString()
+                    };
+                    
+                    localStorage.setItem('contactFormData', JSON.stringify(formData));
+                    console.log('Данные формы сохранены:', formData);
+                    
+                    // Показываю анимацию отправки
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
+                    submitBtn.disabled = true;
+                    
+                    // Имитирую отправку на сервер
+                    setTimeout(() => {
+                        console.log('Форма успешно отправлена!');
+                        
+                        // Показываю модальное окно успеха
+                        if (successModal) {
+                            successModal.classList.add('show');
+                        }
+                        
+                        // Восстанавливаю кнопку
+                        submitBtn.innerHTML = 'Отправить сообщение';
+                        submitBtn.disabled = false;
+                        
+                        // Очищаю форму
+                        contactForm.reset();
+                        
+                        // Убираю иконки успеха
+                        document.querySelectorAll('.field-success').forEach(icon => {
+                            icon.remove();
+                        });
+                        
+                        // Сбрасываю прогресс и счетчик
+                        updateFormProgress();
+                        updateCharCounter();
+                        
+                        // Очищаю сохраненные данные формы
+                        localStorage.removeItem('contactFormData');
+                        
+                        // Показываю сообщение в консоль (для отладки)
+                        console.log('Отправленные данные:', {
+                            имя: formData.name,
+                            email: formData.email,
+                            тема: formData.subject,
+                            сообщение: formData.message,
+                            время: new Date().toLocaleString('ru-RU')
+                        });
+                    }, 1500);
+                } else {
+                    console.log('Форма содержит ошибки, отправка невозможна');
+                    
+                    // Анимация тряски для кнопки отправки
+                    submitBtn.classList.add('shake');
+                    setTimeout(() => {
+                        submitBtn.classList.remove('shake');
+                    }, 500);
+                    
+                    // Прокручиваю страницу к первой ошибке
+                    const firstErrorField = document.querySelector('.form-control.error');
+                    if (firstErrorField) {
+                        firstErrorField.scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'center' 
+                        });
+                        firstErrorField.focus();
+                    }
+                }
+            });
+            
+            // Закрытие модального окна успеха
+            if (closeSuccessBtn && successModal) {
+                closeSuccessBtn.addEventListener('click', function() {
+                    successModal.classList.remove('show');
+                });
+                
+                successModal.addEventListener('click', function(e) {
+                    if (e.target === successModal) {
+                        successModal.classList.remove('show');
+                    }
+                });
+            }
+            
+            // Восстанавливаю данные формы из localStorage при загрузке страницы
+            const savedFormData = localStorage.getItem('contactFormData');
+            if (savedFormData) {
+                try {
+                    const formData = JSON.parse(savedFormData);
+                    
+                    if (nameInput && formData.name) nameInput.value = formData.name;
+                    if (emailInput && formData.email) emailInput.value = formData.email;
+                    if (subjectInput && formData.subject) subjectInput.value = formData.subject;
+                    if (messageInput && formData.message) messageInput.value = formData.message;
+                    
+                    console.log('Данные формы восстановлены из localStorage');
+                    
+                    // Валидирую восстановленные данные
+                    setTimeout(() => {
+                        if (nameInput && nameInput.value.trim()) {
+                            validateField(nameInput, document.getElementById('nameError'));
+                        }
+                        if (emailInput && emailInput.value.trim()) {
+                            validateField(emailInput, document.getElementById('emailError'));
+                        }
+                        if (messageInput && messageInput.value.trim()) {
+                            validateField(messageInput, document.getElementById('messageError'));
+                        }
+                        updateFormProgress();
+                        updateCharCounter();
+                    }, 100);
+                    
+                } catch (e) {
+                    console.error('Ошибка при восстановлении данных формы:', e);
+                }
+            }
+            
+            // Инициализирую прогресс и счетчик при загрузке
+            updateFormProgress();
+            updateCharCounter();
+        }
+
+        // Функция для настройки FAQ (аккордеон)
+        function setupFAQ() {
+            const faqItems = document.querySelectorAll('.faq-item');
+
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+
+                question.addEventListener('click', function () {
+                    // Закрываю все остальные вопросы
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item && otherItem.classList.contains('active')) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+
+                    // Переключаю текущий вопрос
+                    item.classList.toggle('active');
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>
+[file content end]

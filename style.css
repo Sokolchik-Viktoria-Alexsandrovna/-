@@ -1,0 +1,621 @@
+/* Сброс стилей и базовые настройки */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Теперь устанавливаем основные настройки для всей страницы */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #2c3e50;
+    background-color: #f5f1e8;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Основной контейнер для центрирования контента */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Делаем чтобы основное содержимое занимало всё доступное пространство */
+.main {
+    flex: 1;
+}
+
+/* Убираем стандартное подчеркивание у ссылок */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Стили для кнопок */
+.btn {
+    display: inline-block;
+    background-color: #e74c3c;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Эффект при наведении на кнопку */
+.btn:hover {
+    background-color: #c0392b;
+    transform: translateY(-2px);
+}
+
+/* Специальный стиль для больших кнопок */
+.btn-large {
+    padding: 15px 30px;
+    font-size: 18px;
+}
+
+/* Стили для шапки сайта */
+.header {
+    background-color: #2c3e50;
+    color: white;
+    padding: 15px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* Делаем содержимое шапки в ряд */
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Стили для логотипа */
+.logo a {
+    display: flex;
+    align-items: center;
+    font-size: 22px;
+    font-weight: bold;
+    color: white;
+}
+
+/* Отступ для иконки в логотипе */
+.logo i {
+    margin-right: 10px;
+    font-size: 28px;
+}
+
+/* Стили для навигации */
+.nav-list {
+    display: flex;
+    list-style: none;
+}
+
+/* Отступы между пунктами меню */
+.nav-list li {
+    margin-left: 25px;
+}
+
+/* Стили для ссылок в меню */
+.nav-list a {
+    color: white;
+    padding: 5px 0;
+    position: relative;
+    transition: color 0.3s;
+}
+
+/* Подчеркивание активной ссылки */
+.nav-list a.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #e74c3c;
+}
+
+/* Эффект при наведении на ссылку */
+.nav-list a:hover {
+    color: #e74c3c;
+}
+
+/* Стили для приветствия пользователя */
+.user-greeting {
+    font-size: 14px;
+    color: #ecf0f1;
+}
+
+/* Скрываем кнопку меню на десктопе */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Стили для герой-секции */
+.hero {
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 100px 0;
+}
+
+/* Стили для заголовка в герое */
+.hero-title {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    font-family: Georgia, serif;
+}
+
+/* Стили для подзаголовка в герое */
+.hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+/* Стили для всех секций */
+.section {
+    padding: 60px 0;
+}
+
+/* Стили для заголовков секций */
+.section-title {
+    font-family: Georgia, serif;
+    font-size: 2.2rem;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #2c3e50;
+    position: relative;
+}
+
+/* Декоративная линия под заголовком */
+.section-title::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    background-color: #e74c3c;
+    margin: 15px auto;
+}
+
+/* Стили для категорий */
+.categories {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+/* Стили для карточки категории */
+.category-card {
+    background: white;
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    width: 280px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Эффект при наведении на карточку категории */
+.category-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* Стили для иконки категории */
+.category-icon {
+    font-size: 48px;
+    color: #e74c3c;
+    margin-bottom: 20px;
+}
+
+/* Стили для сетки книг */
+.books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+/* Стили для карточки книги */
+.book-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Эффект при наведении на карточку книги */
+.book-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* Стили для обложки книги */
+.book-cover {
+    height: 300px;
+    background-color: #3498db;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Стили для информации о книге */
+.book-info {
+    padding: 20px;
+}
+
+/* Стили для заголовка книги */
+.book-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+/* Стили для автора книги */
+.book-author {
+    color: #7f8c8d;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+}
+
+/* Стили для цены книги */
+.book-price {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #e74c3c;
+    margin-top: 15px;
+}
+
+/* Стили для блока "О нас" */
+.about-content {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+/* Стили для текста "О нас" */
+.about-text {
+    flex: 1;
+}
+
+/* Стили для изображения "О нас" */
+.about-image {
+    flex: 1;
+}
+
+/* Заглушка для изображения */
+.image-placeholder {
+    height: 300px;
+    background-color: #3498db;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 80px;
+}
+
+/* Стили для подвала */
+.footer {
+    background-color: #2c3e50;
+    color: white;
+    padding: 50px 0 20px;
+}
+
+/* Содержимое подвала в ряд */
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+/* Каждая секция подвала */
+.footer-section {
+    flex: 1;
+    min-width: 250px;
+}
+
+/* Отступы в подвале */
+.footer-section h3 {
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+/* Стили для иконок в контактах */
+.footer-section i {
+    margin-right: 10px;
+    color: #e74c3c;
+}
+
+/* Стили для ссылок соцсетей */
+.social-links {
+    display: flex;
+    gap: 15px;
+}
+
+/* Стили для иконок соцсетей */
+.social-links a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-color: #34495e;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+}
+
+/* Эффект при наведении на иконки соцсетей */
+.social-links a:hover {
+    background-color: #e74c3c;
+}
+
+/* Нижняя часть подвала */
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #34495e;
+    font-size: 0.9rem;
+    color: #bdc3c7;
+}
+
+/* Стили для баннера cookies */
+.cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #2c3e50;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    transform: translateY(100%);
+    transition: transform 0.5s;
+}
+
+/* Когда баннер видим */
+.cookie-banner.show {
+    transform: translateY(0);
+}
+
+/* Стили для модального окна */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1001;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+/* Когда модальное окно открыто */
+.modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Содержимое модального окна */
+.modal-content {
+    background-color: white;
+    padding: 40px;
+    border-radius: 8px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+}
+
+/* Поле ввода в модальном окне */
+#userNameInput {
+    width: 100%;
+    padding: 12px;
+    margin: 20px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* Кнопки в модальном окне */
+.modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Сообщение когда история просмотров пуста */
+.empty-message {
+    text-align: center;
+    color: #7f8c8d;
+    padding: 40px;
+    font-size: 1.1rem;
+}
+
+/* Стили для истории просмотров */
+.viewed-books {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    padding: 20px 0;
+    scrollbar-width: thin;
+}
+
+/* Убираем полосу прокрутки в некоторых браузерах */
+.viewed-books::-webkit-scrollbar {
+    height: 6px;
+}
+
+.viewed-books::-webkit-scrollbar-thumb {
+    background-color: #bdc3c7;
+    border-radius: 3px;
+}
+
+/* Карточка в истории просмотров */
+.viewed-book-card {
+    min-width: 180px;
+    background: white;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+/* Эффект при наведении на карточку в истории */
+.viewed-book-card:hover {
+    transform: scale(1.05);
+}
+
+/* Стили для жанра книги */
+.book-genre {
+    display: inline-block;
+    background-color: #ecf0f1;
+    color: #2c3e50;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    margin: 5px 0;
+}
+
+/* Адаптивность для мобильных устройств */
+
+/* Для планшетов и небольших экранов */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .about-content {
+        flex-direction: column;
+    }
+    
+    /* Показываем кнопку меню на мобильных */
+    .menu-toggle {
+        display: block;
+    }
+    
+    /* Скрываем меню по умолчанию на мобильных */
+    .nav-list {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background-color: #2c3e50;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: transform 0.3s, opacity 0.3s, visibility 0.3s;
+        z-index: 999;
+    }
+    
+    /* Когда меню открыто на мобильных */
+    .nav-list.show {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    /* Отступы для пунктов меню на мобильных */
+    .nav-list li {
+        margin: 10px 0;
+    }
+    
+    /* Содержимое шапки на мобильных */
+    .header-content {
+        flex-wrap: wrap;
+    }
+    
+    /* Приветствие на мобильных */
+    .user-greeting {
+        order: 3;
+        width: 100%;
+        text-align: center;
+        margin-top: 10px;
+        font-size: 12px;
+    }
+    
+    /* Баннер cookies на мобильных */
+    .cookie-banner {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .cookie-banner p {
+        margin-bottom: 10px;
+    }
+    
+    /* Подвал на мобильных */
+    .footer-content {
+        flex-direction: column;
+    }
+}
+
+/* Для маленьких телефонов */
+@media (max-width: 480px) {
+    .hero {
+        padding: 60px 0;
+    }
+    
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .section {
+        padding: 40px 0;
+    }
+    
+    .btn-large {
+        padding: 12px 25px;
+        font-size: 16px;
+    }
+    
+    /* Категории на маленьких экранах */
+    .category-card {
+        width: 100%;
+        max-width: 280px;
+    }
+}

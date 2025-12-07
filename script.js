@@ -241,16 +241,18 @@ function createBookCard(book, isCompact = false) {
     const card = document.createElement('div');
     card.className = isCompact ? 'viewed-book-card' : 'book-card';
     
-    // Создаю обложку книги с цветом в зависимости от жанра
-    const coverColor = getGenreColor(book.genre[0]);
+    // Проверяю, есть ли картинка у книги
+    const hasImage = book.image && book.image.trim() !== '';
     
     if (isCompact) {
         // Компактный вид для истории просмотров
         card.innerHTML = `
-            <div class="book-cover" style="background-color: ${coverColor}; height: 120px;">
+            <div class="book-cover" style="background-color: ${getGenreColor(book.genre[0])}; height: 120px; ${hasImage ? `background-image: url('${book.image}'); background-size: cover; background-position: center;` : ''}">
+                ${!hasImage ? `
                 <div style="padding: 10px; color: white; font-weight: bold; font-size: 14px;">
                     ${book.title.substring(0, 30)}${book.title.length > 30 ? '...' : ''}
                 </div>
+                ` : ''}
             </div>
             <div class="book-info">
                 <h4 class="book-title">${book.title.substring(0, 20)}${book.title.length > 20 ? '...' : ''}</h4>
@@ -260,10 +262,12 @@ function createBookCard(book, isCompact = false) {
     } else {
         // Полный вид для каталога и новинок
         card.innerHTML = `
-            <div class="book-cover" style="background-color: ${coverColor};">
+            <div class="book-cover" style="background-color: ${getGenreColor(book.genre[0])}; ${hasImage ? `background-image: url('${book.image}'); background-size: cover; background-position: center;` : ''}">
+                ${!hasImage ? `
                 <div style="padding: 20px; color: white; font-weight: bold;">
                     ${book.title}
                 </div>
+                ` : ''}
             </div>
             <div class="book-info">
                 <h3 class="book-title">${book.title}</h3>
@@ -341,18 +345,21 @@ function showBookDetails(bookId) {
         return;
     }
     
+    // Проверяю, есть ли картинка у книги
+    const hasImage = book.image && book.image.trim() !== '';
+    
     // Создаю модальное окно
     const modal = document.createElement('div');
     modal.className = 'modal show';
     modal.id = 'bookDetailsModal';
     
     modal.innerHTML = `
-        <div class="modal-content">
-            <div style="display: flex; gap: 20px; margin-bottom: 20px;">
-                <div class="book-cover-large" style="background-color: ${getGenreColor(book.genre[0])}; width: 150px; height: 220px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; padding: 15px; text-align: center;">
-                    ${book.title}
+        <div class="modal-content" style="max-width: 600px;">
+            <div style="display: flex; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
+                <div class="book-cover-large" style="background-color: ${getGenreColor(book.genre[0])}; ${hasImage ? `background-image: url('${book.image}'); background-size: cover; background-position: center;` : ''} width: 150px; height: 220px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; padding: 15px; text-align: center; flex-shrink: 0;">
+                    ${!hasImage ? book.title : ''}
                 </div>
-                <div style="flex: 1;">
+                <div style="flex: 1; min-width: 250px;">
                     <h2 style="margin-bottom: 10px;">${book.title}</h2>
                     <h3 style="color: #7f8c8d; margin-bottom: 15px;">${book.author}</h3>
                     <div style="margin-bottom: 15px;">

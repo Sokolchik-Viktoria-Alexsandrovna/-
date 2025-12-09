@@ -645,3 +645,36 @@ a {
         max-width: 100% !important;
     }
 }
+
+
+/* В style.css добавьте или обновите стили для карты: */
+
+/* Стили для карты Google Maps */
+.map-container {
+    border-radius: 8px;
+    overflow: hidden;
+    height: 300px;
+    position: relative;
+    margin-top: 20px;
+}
+
+/* На мобильных устройствах - адаптация карты */
+@media (max-width: 768px) {
+    .map-container {
+        height: 250px;
+    }
+    
+    .map-container iframe {
+        height: 250px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .map-container {
+        height: 200px;
+    }
+    
+    .map-container iframe {
+        height: 200px !important;
+    }
+}

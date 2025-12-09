@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -367,8 +366,8 @@
                             </div>
                             <div class="contact-text">
                                 <h4>Адрес</h4>
-                                <p>г. Минск, ул. Книжная, дом 15</p>
-                                <p>Ближайшая станция метро: "Немига"</p>
+                                <p>Динамо, ул. Даумана 23, Минск, Минская область</p>
+
                             </div>
                         </div>
 
@@ -408,14 +407,11 @@
                         <!-- Карта -->
                         <h3 style="margin-top: 40px;">Мы на карте</h3>
                         <div class="map-container">
-                            <div class="map-placeholder">
-                                <i class="fas fa-map"></i>
-                                <p>Интерактивная карта нашего местоположения</p>
-                                <p>Нажмите на метку для информации</p>
-                            </div>
-                            <div class="map-marker" id="mapMarker">
-                                <i class="fas fa-map-pin"></i>
-                            </div>
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d18802.579464470826!2d27.5358504729248!3d53.90824607636946!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbcf8f877aadb3%3A0x5e75f81a6be43703!2z0JrQvdC40LbQvdCw0Y8g0LLRi9GB0YLQsNCy0LrQsC4g0J3QvtGH0L3QsNGPINC60L3QuNC20L3QsNGPINGP0YDQvNCw0YDQutCwIQ!5e0!3m2!1sru!2sby!4v1765261065096!5m2!1sru!2sby"
+                                width="600" height="450" style="border:0; width: 100%; height: 300px;"
+                                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
                         </div>
                     </div>
 
@@ -508,7 +504,8 @@
                                 </div>
                             </div>
                             <div class="faq-answer">
-                                <p>Да, мы осуществляем доставку по Минску в пределах МКАД. Стоимость доставки - 5 рублей. При заказе от 50 рублей доставка бесплатная.</p>
+                                <p>Да, мы осуществляем доставку по Минску в пределах МКАД. Стоимость доставки - 5
+                                    рублей. При заказе от 50 рублей доставка бесплатная.</p>
                             </div>
                         </div>
 
@@ -540,7 +537,7 @@
                 </div>
                 <div class="footer-section">
                     <h3>Контакты</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> г. Минск, ул. Книжная, 15</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Динамо, ул. Даумана 23, Минск, Минская область</p>
                     <p><i class="fas fa-phone"></i> +375 (29) 123-45-67</p>
                     <p><i class="fas fa-envelope"></i> info@bookcorner.by</p>
                 </div>
@@ -591,8 +588,7 @@
         document.addEventListener('DOMContentLoaded', function () {
             console.log('Страница контактов загружена');
 
-            // Настраиваю интерактивную карту
-            setupMap();
+           
 
             // Настраиваю форму обратной связи
             setupContactForm();
@@ -601,34 +597,7 @@
             setupFAQ();
         });
 
-        // Функция для настройки интерактивной карты
-        function setupMap() {
-            const mapMarker = document.getElementById('mapMarker');
-            const mapPlaceholder = document.querySelector('.map-placeholder');
-
-            if (mapMarker) {
-                // Добавляю обработчик клика на метку карты
-                mapMarker.addEventListener('click', function () {
-                    // Показываю информацию о местоположении
-                    alert('Наш магазин находится по адресу: г. Минск, ул. Книжная, дом 15\n\nБлижайшая станция метро: "Немига"\n\nМы ждем вас с 10:00 до 20:00 ежедневно!');
-
-                    // Анимация метки при клике
-                    this.style.transform = 'translate(-50%, -100%) scale(1.2)';
-                    setTimeout(() => {
-                        this.style.transform = 'translate(-50%, -100%) scale(1)';
-                    }, 300);
-                });
-
-                // Делаю карту более интерактивной
-                if (mapPlaceholder) {
-                    mapPlaceholder.innerHTML = `
-                        <i class="fas fa-map-marked-alt"></i>
-                        <p>Наш магазин на карте Минска</p>
-                        <p style="font-size: 14px; margin-top: 10px;">Нажмите на метку для подробной информации</p>
-                    `;
-                }
-            }
-        }
+        
 
         // Функция для настройки формы обратной связи
         function setupContactForm() {
@@ -636,15 +605,15 @@
             const submitBtn = document.getElementById('submitForm');
             const successModal = document.getElementById('successModal');
             const closeSuccessBtn = document.getElementById('closeSuccessModal');
-            
+
             if (!contactForm || !submitBtn) return;
-            
+
             // Получаю все поля формы
             const nameInput = document.getElementById('name');
             const emailInput = document.getElementById('email');
             const subjectInput = document.getElementById('subject');
             const messageInput = document.getElementById('message');
-            
+
             // Сообщения об ошибках для каждого поля
             const errorMessages = {
                 name: {
@@ -661,66 +630,66 @@
                     short: "Сообщение должно содержать минимум 10 символов"
                 }
             };
-            
+
             // Функция для проверки имени
             function validateName(name) {
                 const nameValue = name.trim();
-                
+
                 if (!nameValue) {
                     return { isValid: false, message: errorMessages.name.empty };
                 }
-                
+
                 if (nameValue.length < 2) {
                     return { isValid: false, message: errorMessages.name.short };
                 }
-                
+
                 // Проверяю, что имя содержит только буквы, пробелы и дефисы
                 const nameRegex = /^[a-zA-Zа-яА-ЯёЁ\s\-]+$/;
                 if (!nameRegex.test(nameValue)) {
                     return { isValid: false, message: errorMessages.name.invalid };
                 }
-                
+
                 return { isValid: true, message: "" };
             }
-            
+
             // Функция для проверки email
             function validateEmail(email) {
                 const emailValue = email.trim();
-                
+
                 if (!emailValue) {
                     return { isValid: false, message: errorMessages.email.empty };
                 }
-                
+
                 // Простая проверка формата email
                 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 if (!emailRegex.test(emailValue)) {
                     return { isValid: false, message: errorMessages.email.invalid };
                 }
-                
+
                 return { isValid: true, message: "" };
             }
-            
+
             // Функция для проверки сообщения
             function validateMessage(message) {
                 const messageValue = message.trim();
-                
+
                 if (!messageValue) {
                     return { isValid: false, message: errorMessages.message.empty };
                 }
-                
+
                 if (messageValue.length < 10) {
                     return { isValid: false, message: errorMessages.message.short };
                 }
-                
+
                 return { isValid: true, message: "" };
             }
-            
+
             // Функция для отображения ошибки поля
             function showError(field, errorElement, message) {
                 field.classList.add('error');
                 errorElement.textContent = message;
                 errorElement.style.display = 'block';
-                
+
                 // Добавляю иконку ошибки
                 if (!field.parentNode.querySelector('.field-status')) {
                     const statusIcon = document.createElement('span');
@@ -729,18 +698,18 @@
                     field.parentNode.appendChild(statusIcon);
                 }
             }
-            
+
             // Функция для скрытия ошибки поля
             function hideError(field, errorElement) {
                 field.classList.remove('error');
                 errorElement.style.display = 'none';
-                
+
                 // Удаляю иконку ошибки
                 const statusIcon = field.parentNode.querySelector('.field-status');
                 if (statusIcon) {
                     statusIcon.remove();
                 }
-                
+
                 // Добавляю иконку успеха если поле заполнено правильно
                 if (field.value.trim()) {
                     if (!field.parentNode.querySelector('.field-success')) {
@@ -751,11 +720,11 @@
                     }
                 }
             }
-            
+
             // Функция для валидации конкретного поля
             function validateField(field, errorElement) {
                 let validationResult;
-                
+
                 switch (field.id) {
                     case 'name':
                         validationResult = validateName(field.value);
@@ -769,7 +738,7 @@
                     default:
                         return true;
                 }
-                
+
                 if (validationResult.isValid) {
                     hideError(field, errorElement);
                     return true;
@@ -778,37 +747,37 @@
                     return false;
                 }
             }
-            
+
             // Функция для обновления прогресса заполнения формы
             function updateFormProgress() {
                 const progressFill = document.getElementById('formProgress');
                 const progressText = document.getElementById('progressText');
-                
+
                 if (!progressFill || !progressText) return;
-                
+
                 let filledFields = 0;
                 let totalFields = 3; // name, email, message - обязательные поля
-                
+
                 // Проверяю обязательные поля
                 if (nameInput && nameInput.value.trim()) {
                     const nameValidation = validateName(nameInput.value);
                     if (nameValidation.isValid) filledFields++;
                 }
-                
+
                 if (emailInput && emailInput.value.trim()) {
                     const emailValidation = validateEmail(emailInput.value);
                     if (emailValidation.isValid) filledFields++;
                 }
-                
+
                 if (messageInput && messageInput.value.trim()) {
                     const messageValidation = validateMessage(messageInput.value);
                     if (messageValidation.isValid) filledFields++;
                 }
-                
+
                 const progressPercent = Math.round((filledFields / totalFields) * 100);
                 progressFill.style.width = `${progressPercent}%`;
                 progressText.textContent = `Заполнено: ${progressPercent}%`;
-                
+
                 // Меняю цвет прогресс-бара в зависимости от заполнения
                 if (progressPercent < 33) {
                     progressFill.style.backgroundColor = '#e74c3c';
@@ -818,16 +787,16 @@
                     progressFill.style.backgroundColor = '#2ecc71';
                 }
             }
-            
+
             // Функция для обновления счетчика символов
             function updateCharCounter() {
                 const charCounter = document.getElementById('charCounter');
                 if (!charCounter || !messageInput) return;
-                
+
                 const length = messageInput.value.length;
                 charCounter.textContent = `${length}/10`;
                 charCounter.style.display = 'block';
-                
+
                 if (length < 10) {
                     charCounter.className = 'char-counter error';
                 } else if (length < 20) {
@@ -836,74 +805,74 @@
                     charCounter.className = 'char-counter';
                 }
             }
-            
+
             // Добавляю обработчики для валидации в реальном времени
             if (nameInput) {
                 const nameError = document.getElementById('nameError');
-                
-                nameInput.addEventListener('input', function() {
+
+                nameInput.addEventListener('input', function () {
                     validateField(this, nameError);
                     updateFormProgress();
                 });
-                
-                nameInput.addEventListener('blur', function() {
+
+                nameInput.addEventListener('blur', function () {
                     validateField(this, nameError);
                 });
             }
-            
+
             if (emailInput) {
                 const emailError = document.getElementById('emailError');
-                
-                emailInput.addEventListener('input', function() {
+
+                emailInput.addEventListener('input', function () {
                     validateField(this, emailError);
                     updateFormProgress();
                 });
-                
-                emailInput.addEventListener('blur', function() {
+
+                emailInput.addEventListener('blur', function () {
                     validateField(this, emailError);
                 });
             }
-            
+
             if (messageInput) {
                 const messageError = document.getElementById('messageError');
-                
-                messageInput.addEventListener('input', function() {
+
+                messageInput.addEventListener('input', function () {
                     validateField(this, messageError);
                     updateFormProgress();
                     updateCharCounter();
                 });
-                
-                messageInput.addEventListener('blur', function() {
+
+                messageInput.addEventListener('blur', function () {
                     validateField(this, messageError);
                 });
             }
-            
+
             // Обработчик отправки формы
-            contactForm.addEventListener('submit', function(e) {
+            contactForm.addEventListener('submit', function (e) {
                 e.preventDefault();
                 console.log('Пытаюсь отправить форму...');
-                
+
                 // Валидирую все поля
                 let isFormValid = true;
-                
+
                 if (nameInput) {
                     const nameError = document.getElementById('nameError');
                     const nameValid = validateField(nameInput, nameError);
                     isFormValid = nameValid && isFormValid;
                 }
-                
+
                 if (emailInput) {
                     const emailError = document.getElementById('emailError');
                     const emailValid = validateField(emailInput, emailError);
                     isFormValid = emailValid && isFormValid;
                 }
-                
+
                 if (messageInput) {
                     const messageError = document.getElementById('messageError');
                     const messageValid = validateField(messageInput, messageError);
                     isFormValid = messageValid && isFormValid;
                 }
-                
+
                 // Если форма валидна
                 if (isFormValid) {
                     // Сохраняю данные формы в localStorage
@@ -914,42 +883,42 @@
                         message: messageInput ? messageInput.value.trim() : '',
                         timestamp: new Date().toISOString()
                     };
-                    
+
                     localStorage.setItem('contactFormData', JSON.stringify(formData));
                     console.log('Данные формы сохранены:', formData);
-                    
+
                     // Показываю анимацию отправки
                     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
                     submitBtn.disabled = true;
-                    
+
                     // Имитирую отправку на сервер
                     setTimeout(() => {
                         console.log('Форма успешно отправлена!');
-                        
+
                         // Показываю модальное окно успеха
                         if (successModal) {
                             successModal.classList.add('show');
                         }
-                        
+
                         // Восстанавливаю кнопку
                         submitBtn.innerHTML = 'Отправить сообщение';
                         submitBtn.disabled = false;
-                        
+
                         // Очищаю форму
                         contactForm.reset();
-                        
+
                         // Убираю иконки успеха
                         document.querySelectorAll('.field-success').forEach(icon => {
                             icon.remove();
                         });
-                        
+
                         // Сбрасываю прогресс и счетчик
                         updateFormProgress();
                         updateCharCounter();
-                        
+
                         // Очищаю сохраненные данные формы
                         localStorage.removeItem('contactFormData');
-                        
+
                         // Показываю сообщение в консоль (для отладки)
                         console.log('Отправленные данные:', {
                             имя: formData.name,
@@ -961,51 +930,51 @@
                     }, 1500);
                 } else {
                     console.log('Форма содержит ошибки, отправка невозможна');
-                    
+
                     // Анимация тряски для кнопки отправки
                     submitBtn.classList.add('shake');
                     setTimeout(() => {
                         submitBtn.classList.remove('shake');
                     }, 500);
-                    
+
                     // Прокручиваю страницу к первой ошибке
                     const firstErrorField = document.querySelector('.form-control.error');
                     if (firstErrorField) {
-                        firstErrorField.scrollIntoView({ 
-                            behavior: 'smooth', 
-                            block: 'center' 
+                        firstErrorField.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'center'
                         });
                         firstErrorField.focus();
                     }
                 }
             });
-            
+
             // Закрытие модального окна успеха
             if (closeSuccessBtn && successModal) {
-                closeSuccessBtn.addEventListener('click', function() {
+                closeSuccessBtn.addEventListener('click', function () {
                     successModal.classList.remove('show');
                 });
-                
-                successModal.addEventListener('click', function(e) {
+
+                successModal.addEventListener('click', function (e) {
                     if (e.target === successModal) {
                         successModal.classList.remove('show');
                     }
                 });
             }
-            
+
             // Восстанавливаю данные формы из localStorage при загрузке страницы
             const savedFormData = localStorage.getItem('contactFormData');
             if (savedFormData) {
                 try {
                     const formData = JSON.parse(savedFormData);
-                    
+
                     if (nameInput && formData.name) nameInput.value = formData.name;
                     if (emailInput && formData.email) emailInput.value = formData.email;
                     if (subjectInput && formData.subject) subjectInput.value = formData.subject;
                     if (messageInput && formData.message) messageInput.value = formData.message;
-                    
+
                     console.log('Данные формы восстановлены из localStorage');
-                    
+
                     // Валидирую восстановленные данные
                     setTimeout(() => {
                         if (nameInput && nameInput.value.trim()) {
@@ -1020,12 +989,12 @@
                         updateFormProgress();
                         updateCharCounter();
                     }, 100);
-                    
+
                 } catch (e) {
                     console.error('Ошибка при восстановлении данных формы:', e);
                 }
             }
-            
+
             // Инициализирую прогресс и счетчик при загрузке
             updateFormProgress();
             updateCharCounter();
